@@ -1,0 +1,1506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PLC & HMI Parameter Reference</title>
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#2563EB">
+    <meta name="description" content="Quick reference guide for Siemens, Schneider, VFDs and industrial instruments during commissioning">
+    <meta name="keywords" content="PLC, HMI, Siemens, Schneider, VFD, industrial automation, commissioning">
+    <meta name="author" content="MiniMax Agent">
+    
+    <!-- iOS PWA Support -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="PLC Reference">
+    <link rel="apple-touch-icon" href="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTkyIiBoZWlnaHQ9IjE5MiIgdmlld0JveD0iMCAwIDE5MiAxOTIiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIxOTIiIGhlaWdodD0iMTkyIiByeD0iMjQiIGZpbGw9InVybCgjZ3JhZGllbnQwX2xpbmVhcl8xXzEpIi8+CjxwYXRoIGQ9Ik02NCA2NEgxMjhWODBINjRWNjRaTTEwNCA2NEgxMzZWODBINTA0VjY0Wk02NCA5NkgxMjhWMTEySDY0Vjk2Wk0xMDQgOTZIMTM2VjExMkgxMDRWOTZaTTEwNCAxMjhIMTM2VjE0NEgxMDRWMTI4Wk02NCAxMjhIMTM2VjE0NEg2NFYxMjhaIiBmaWxsPSJ3aGl0ZSIvPgo8ZGVmcz4KPGxpbmVhckdyYWRpZW50IGlkPSJncmFkaWVudDBfbGluZWFyXzFfMSIgeDE9IjAiIHkxPSIwIiB4Mj0iMTkyIiB5Mj0iMTkyIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+CjxzdG9wIHN0b3AtY29sb3I9IiMyNTYzRUIiLz4KPHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjMUU0RUQ4Ii8+CjwvbGluZWFyR3JhZGllbnQ+CjwvZGVmcz4KPHN2Zz4K">
+    
+    <!-- Fonts and Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/lucide/0.263.1/lucide.min.css" rel="stylesheet">
+    <style>
+        :root {
+            /* Primary Colors */
+            --primary-400: #3B82F6;
+            --primary-500: #2563EB;
+            --primary-600: #1D4ED8;
+            
+            /* Neutral Colors - Dark Theme */
+            --neutral-950: #0A0A0A;
+            --neutral-900: #141414;
+            --neutral-800: #27272A;
+            --neutral-400: #A1A1AA;
+            --neutral-100: #E4E4E7;
+            --neutral-0: #FFFFFF;
+            
+            /* Semantic Colors */
+            --success-500: #22C55E;
+            --warning-400: #FBBF24;
+            --error-500: #EF4444;
+            
+            /* Siemens Blue */
+            --siemens-blue: #009999;
+            --schneider-green: #00A651;
+            --abb-orange: #FF6600;
+            --danfoss-red: #E30613;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--neutral-950);
+            color: var(--neutral-100);
+            line-height: 1.5;
+            font-size: 16px;
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        /* Typography */
+        h1 { font-size: 24px; font-weight: 700; line-height: 1.3; }
+        h2 { font-size: 20px; font-weight: 600; line-height: 1.4; }
+        h3 { font-size: 18px; font-weight: 600; line-height: 1.4; }
+        .body { font-size: 16px; font-weight: 400; line-height: 1.5; }
+        .body-bold { font-size: 16px; font-weight: 600; line-height: 1.5; }
+        .small { font-size: 14px; font-weight: 500; line-height: 1.2; }
+        .code { font-family: 'JetBrains Mono', monospace; font-size: 15px; font-weight: 400; line-height: 1.6; }
+
+        /* Spacing */
+        .space-xs { margin: 4px; }
+        .space-sm { margin: 8px; }
+        .space-md { margin: 12px; }
+        .space-lg { margin: 16px; }
+        .space-xl { margin: 24px; }
+        .space-xxl { margin: 32px; }
+        .space-xxxl { margin: 48px; }
+
+        /* Layout */
+        .container {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: var(--space-lg);
+            padding-bottom: 100px; /* Account for bottom nav */
+            -webkit-overflow-scrolling: touch;
+            overflow-x: visible;
+            /* Allow horizontal scroll for filter buttons */
+            position: relative;
+        }
+
+        /* Main content wrapper */
+        .main-content {
+            width: 100%;
+            max-width: 720px;
+            margin: 0 auto;
+            overflow-x: visible;
+        }
+
+        /* Header */
+        .header {
+            position: sticky;
+            top: 0;
+            background: var(--neutral-950);
+            border-bottom: 1px solid var(--neutral-800);
+            z-index: 100;
+            height: 64px;
+            display: flex;
+            align-items: center;
+            padding: 0 var(--space-lg);
+        }
+
+        /* Search Bar */
+        .search-container {
+            position: relative;
+            width: 100%;
+            margin-bottom: var(--space-lg);
+        }
+
+        .search-input {
+            width: 100%;
+            height: 48px;
+            background: var(--neutral-900);
+            border: 1px solid var(--neutral-800);
+            border-radius: 8px;
+            padding: 0 16px 0 44px;
+            color: var(--neutral-100);
+            font-size: 16px;
+            transition: border-color 150ms ease;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--primary-500);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.4);
+        }
+
+        .search-input::placeholder {
+            color: var(--neutral-400);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--neutral-400);
+            width: 20px;
+            height: 20px;
+        }
+
+        /* Bottom Navigation */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: var(--neutral-900);
+            border-top: 1px solid var(--neutral-800);
+            z-index: 100;
+            height: 72px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 8px 0;
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-width: 48px;
+            min-height: 48px;
+            cursor: pointer;
+            transition: color 150ms ease;
+        }
+
+        .nav-item.active {
+            color: var(--primary-500);
+        }
+
+        .nav-item:not(.active) {
+            color: var(--neutral-400);
+        }
+
+        .nav-icon {
+            width: 24px;
+            height: 24px;
+            margin-bottom: 4px;
+        }
+
+        .nav-label {
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        /* Cards */
+        .card {
+            background: var(--neutral-900);
+            border-radius: 8px;
+            padding: var(--space-lg);
+            margin-bottom: var(--space-md);
+            border: 1px solid var(--neutral-800);
+            transition: background-color 150ms ease-out;
+            cursor: pointer;
+        }
+
+        .card:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: var(--space-sm);
+        }
+
+        .card-title {
+            flex: 1;
+        }
+
+        /* Tags */
+        .tag {
+            background: var(--neutral-800);
+            color: var(--neutral-100);
+            padding: 4px 8px;
+            border-radius: 999px;
+            font-size: 12px;
+            font-weight: 500;
+            white-space: nowrap;
+        }
+
+        .tag.siemens { background: var(--siemens-blue); }
+        .tag.schneider { background: var(--schneider-green); }
+        .tag.abb { background: var(--abb-orange); }
+        .tag.danfoss { background: var(--danfoss-red); }
+
+        /* Data Display */
+        .data-pair {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: var(--space-xs);
+        }
+
+        .data-key {
+            color: var(--neutral-400);
+            font-weight: 500;
+        }
+
+        .data-value {
+            color: var(--neutral-100);
+            font-weight: 400;
+            text-align: right;
+            max-width: 60%;
+            word-break: break-word;
+        }
+
+        /* Code Blocks */
+        .code-block {
+            background: var(--neutral-950);
+            border: 1px solid var(--neutral-800);
+            border-radius: 8px;
+            padding: var(--space-lg);
+            margin: var(--space-sm) 0;
+            position: relative;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 15px;
+            line-height: 1.6;
+            overflow-x: auto;
+        }
+
+        .copy-button {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            background: var(--neutral-800);
+            border: none;
+            border-radius: 4px;
+            padding: 8px;
+            cursor: pointer;
+            transition: background-color 150ms ease;
+        }
+
+        .copy-button:hover {
+            background: var(--neutral-700);
+        }
+
+        .copy-button.copied {
+            background: var(--success-500);
+        }
+
+        /* Toast Messages */
+        .toast {
+            position: fixed;
+            top: 80px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--success-500);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            z-index: 1000;
+            animation: slideDown 300ms ease;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateX(-50%) translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(-50%) translateY(0);
+            }
+        }
+
+        /* Category Grid */
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: var(--space-md);
+            margin: var(--space-lg) 0;
+        }
+
+        .category-card {
+            background: var(--neutral-900);
+            border: 1px solid var(--neutral-800);
+            border-radius: 8px;
+            padding: var(--space-lg);
+            text-align: center;
+            cursor: pointer;
+            transition: all 150ms ease;
+        }
+
+        .category-card:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: var(--primary-500);
+        }
+
+        .category-icon {
+            width: 48px;
+            height: 48px;
+            margin: 0 auto var(--space-sm);
+            background: var(--primary-500);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        /* Filter Buttons */
+        .filter-buttons {
+            display: flex;
+            gap: var(--space-sm);
+            margin: var(--space-lg) 0;
+            overflow-x: auto;
+            overflow-y: hidden;
+            padding: var(--space-sm);
+            padding-left: 16px; /* Ensure buttons can be reached */
+            padding-right: 16px; /* Ensure buttons can be reached */
+            -webkit-overflow-scrolling: touch;
+            touch-action: pan-x;
+            scrollbar-width: none; /* Firefox */
+            -ms-overflow-style: none; /* IE and Edge */
+            scroll-behavior: smooth;
+            width: 100%;
+            min-width: 100%;
+            box-sizing: border-box;
+        }
+
+        .filter-buttons::-webkit-scrollbar {
+            display: none; /* Chrome, Safari, Opera */
+        }
+
+        /* Ensure buttons are always clickable even when partially visible */
+        .filter-btn {
+            position: relative;
+            z-index: 2;
+        }
+
+        .filter-btn {
+            background: var(--neutral-800);
+            color: var(--neutral-100);
+            border: none;
+            border-radius: 20px;
+            padding: 14px 24px;
+            font-size: 14px;
+            font-weight: 500;
+            white-space: nowrap;
+            cursor: pointer;
+            transition: all 150ms ease;
+            min-height: 48px;
+            min-width: 90px;
+            -webkit-tap-highlight-color: transparent;
+            user-select: none;
+            position: relative;
+            z-index: 1;
+            touch-action: manipulation;
+            flex-shrink: 0;
+        }
+
+        .filter-btn.active {
+            background: var(--primary-500);
+            box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.3);
+            color: white;
+            font-weight: 600;
+        }
+
+        .filter-btn:active {
+            background: var(--primary-600);
+            transform: scale(0.95);
+        }
+
+        /* Enhanced touch feedback for mobile */
+        @media (hover: none) and (pointer: coarse) {
+            .filter-btn {
+                min-height: 52px;
+                min-width: 100px;
+                padding: 16px 28px;
+                font-size: 15px;
+            }
+            
+            .filter-btn:active {
+                transform: scale(0.98);
+            }
+        }
+
+        .filter-btn:hover:not(.active) {
+            background: var(--neutral-700);
+        }
+
+        /* Debug styles */
+        .debug-info {
+            background: var(--neutral-800);
+            color: var(--neutral-100);
+            padding: 8px;
+            margin: 8px 0;
+            border-radius: 4px;
+            font-family: monospace;
+            text-align: center;
+        }
+
+        /* Test button to verify functionality */
+        .test-button {
+            background: var(--success-500);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            margin: 10px 0;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <h1>PLC & HMI Reference</h1>
+    </header>
+
+    <div class="container">
+        <!-- Search Bar -->
+        <div class="search-container">
+            <i data-lucide="search" class="search-icon"></i>
+            <input type="text" class="search-input" placeholder="Search parameters, codes, or function blocks..." id="searchInput">
+        </div>
+
+        <!-- Debug Info -->
+        <div id="debugInfo" class="debug-info" style="display: none;">
+            JavaScript Status: <span id="jsStatus">Ready</span>
+        </div>
+
+        <!-- Filter Buttons -->
+        <div class="main-content">
+            <div class="filter-buttons" id="filterButtons">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="siemens">Siemens</button>
+                <button class="filter-btn" data-filter="schneider">Schneider</button>
+                <button class="filter-btn" data-filter="vfd">VFDs</button>
+                <button class="filter-btn" data-filter="instruments">Instruments</button>
+                <button class="filter-btn" data-filter="alarms">Alarms</button>
+            </div>
+            
+            <!-- Test button to verify functionality -->
+            <button class="test-button" onclick="console.log('Test button clicked!')">Test Click</button>
+        </div>
+
+        <!-- Categories View -->
+        <div id="categoriesView">
+            <h2>Categories</h2>
+            <div class="category-grid">
+                <div class="category-card" onclick="showCategory('siemens')">
+                    <div class="category-icon">
+                        <i data-lucide="cpu"></i>
+                    </div>
+                    <h3>Siemens</h3>
+                    <p class="small">TIA Portal & S7-300/400</p>
+                </div>
+                <div class="category-card" onclick="showCategory('schneider')">
+                    <div class="category-icon">
+                        <i data-lucide="box"></i>
+                    </div>
+                    <h3>Schneider</h3>
+                    <p class="small">Machine Expert & SoMachine</p>
+                </div>
+                <div class="category-card" onclick="showCategory('vfd')">
+                    <div class="category-icon">
+                        <i data-lucide="zap"></i>
+                    </div>
+                    <h3>VFD Parameters</h3>
+                    <p class="small">ABB, Danfoss, Schneider ATV</p>
+                </div>
+                <div class="category-card" onclick="showCategory('instruments')">
+                    <div class="category-icon">
+                        <i data-lucide="thermometer"></i>
+                    </div>
+                    <h3>Instruments</h3>
+                    <p class="small">Boiler & Process Control</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Content View -->
+        <div id="contentView" class="hidden">
+            <div style="display: flex; align-items: center; margin-bottom: var(--space-lg);">
+                <button onclick="showCategories()" style="background: none; border: none; color: var(--primary-500); cursor: pointer; margin-right: var(--space-sm);">
+                    <i data-lucide="arrow-left" style="width: 20px; height: 20px;"></i>
+                </button>
+                <h2 id="contentTitle">Content</h2>
+            </div>
+            <div id="contentArea"></div>
+        </div>
+    </div>
+
+    <!-- Bottom Navigation -->
+    <nav class="bottom-nav">
+        <div class="nav-item active" onclick="showCategories()">
+            <i data-lucide="grid-3x3" class="nav-icon"></i>
+            <span class="nav-label">Categories</span>
+        </div>
+        <div class="nav-item" onclick="showAlarms()">
+            <i data-lucide="alert-triangle" class="nav-icon"></i>
+            <span class="nav-label">Alarms</span>
+        </div>
+    </nav>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lucide/0.263.1/lucide.min.js"></script>
+    
+    <!-- Database -->
+    <script>
+        const database = {
+            siemens: {
+                title: "Siemens PLC Systems",
+                items: [
+                    {
+                        name: "DB100.DBX0.0",
+                        category: "TIA Portal",
+                        type: "BOOL",
+                        description: "Start command bit for motor 1",
+                        address: "DB100.DBX0.0",
+                        dataType: "BOOL",
+                        defaultValue: "FALSE",
+                        comments: "Main start command for conveyor motor"
+                    },
+                    {
+                        name: "FC1 - Motor Control",
+                        category: "Function Block",
+                        type: "FC",
+                        description: "Standard motor control function block",
+                        parameters: ["Start", "Stop", "Reset", "Fault"],
+                        sampleCode: `// FC1 - Motor Control
+VAR_INPUT
+    Start : BOOL;
+    Stop : BOOL;
+    Reset : BOOL;
+END_VAR
+
+VAR_OUTPUT
+    Motor_On : BOOL;
+    Fault : BOOL;
+END_VAR
+
+// Logic here
+Motor_On := Start AND NOT Stop;`
+                    },
+                    {
+                        name: "MW100 - Status Word",
+                        category: "S7-300/400",
+                        type: "WORD",
+                        description: "Motor status word register",
+                        address: "MW100",
+                        dataType: "WORD",
+                        defaultValue: "16#0000",
+                        bitDescription: "Bit 0: Ready, Bit 1: Running, Bit 2: Fault"
+                    },
+                    {
+                        name: "FC105 - SCALE",
+                        category: "TIA Portal",
+                        type: "FC",
+                        description: "Scale Analog Input Values",
+                        parameters: ["IN (INT)", "HI_LIM (REAL)", "LO_LIM (REAL)", "BIPOLAR (BOOL)", "RET_VAL (INT)", "OUT (REAL)"],
+                        sampleCode: `// FC105 - Scale analog input
+// IN: Raw analog value (0-27648)
+// HI_LIM: Scaled high limit
+// LO_LIM: Scaled low limit  
+// BIPOLAR: TRUE for ±10V, FALSE for 0-10V
+// OUT: Scaled value
+
+CALL "SCALE"
+IN     := IW64          // Raw analog input
+HI_LIM := 100.0         // High scale value
+LO_LIM := 0.0           // Low scale value
+BIPOLAR:= FALSE         // Unipolar
+RET_VAL:= MW10          // Return value
+OUT    := MD20          // Scaled output`
+                    },
+                    {
+                        name: "TON - Timer On-Delay",
+                        category: "TIA Portal",
+                        type: "FB",
+                        description: "On-delay timer function block",
+                        parameters: ["IN (BOOL)", "PT (TIME)", "Q (BOOL)", "ET (TIME)"],
+                        sampleCode: `// TON - On-Delay Timer
+VAR
+    Timer1 : TON;
+    Start_Signal : BOOL;
+    Timer_Preset : TIME := T#5S;
+END_VAR
+
+// Timer logic
+Timer1(IN := Start_Signal, PT := Timer_Preset);
+// Q becomes TRUE after PT time has elapsed
+// ET shows elapsed time`
+                    }
+                ]
+            },
+            schneider: {
+                title: "Schneider Electric Systems",
+                items: [
+                    {
+                        name: "System.Motor_1.Start",
+                        category: "Machine Expert",
+                        type: "BOOL",
+                        description: "Start command for motor 1",
+                        address: "%IX0.0",
+                        dataType: "BOOL",
+                        defaultValue: "FALSE"
+                    },
+                    {
+                        name: "FB_MotorControl",
+                        category: "Function Block",
+                        type: "FB",
+                        description: "Motor control function block",
+                        variables: [
+                            { name: "Execute", type: "BOOL", description: "Start command" },
+                            { name: "Reset", type: "BOOL", description: "Reset faults" },
+                            { name: "Done", type: "BOOL", description: "Operation completed" },
+                            { name: "Error", type: "BOOL", description: "Error occurred" }
+                        ],
+                        sampleCode: `FUNCTION_BLOCK FB_MotorControl
+VAR_INPUT
+    Execute : BOOL;
+    Reset : BOOL;
+END_VAR
+
+VAR_OUTPUT
+    Done : BOOL;
+    Error : BOOL;
+    Status : INT;
+END_VAR
+
+VAR
+    Timer : TON;
+END_VAR
+
+// Main logic
+Timer(IN := Execute, PT := T#5S);
+Done := Timer.Q;`
+                    },
+                    {
+                        name: "TON Timer",
+                        category: "Machine Expert",
+                        type: "Function Block",
+                        description: "On-delay timer",
+                        variables: [
+                            { name: "IN", type: "BOOL", description: "Timer input" },
+                            { name: "PT", type: "TIME", description: "Preset time" },
+                            { name: "Q", type: "BOOL", description: "Timer output" },
+                            { name: "ET", type: "TIME", description: "Elapsed time" }
+                        ],
+                        sampleCode: `// TON Timer Example
+Timer1(IN := Start_Button, PT := T#10S);
+Motor_Start := Timer1.Q;`
+                    },
+                    {
+                        name: "CTU Counter",
+                        category: "Machine Expert", 
+                        type: "Function Block",
+                        description: "Up counter function block",
+                        variables: [
+                            { name: "CU", type: "BOOL", description: "Count input" },
+                            { name: "RESET", type: "BOOL", description: "Reset counter" },
+                            { name: "PV", type: "INT", description: "Preset value" },
+                            { name: "Q", type: "BOOL", description: "Counter output" },
+                            { name: "CV", type: "INT", description: "Current value" }
+                        ],
+                        sampleCode: `// CTU Counter Example
+Counter1(CU := Pulse_Input, RESET := Reset_Button, PV := 100);
+Count_Done := Counter1.Q;`
+                    }
+                ]
+            },
+            vfd: {
+                title: "VFD Parameters",
+                items: [
+                    {
+                        name: "P100 - Reference Frequency",
+                        category: "ABB ACS580",
+                        type: "REAL",
+                        description: "Frequency reference setpoint",
+                        range: "0.0 - 50.0 Hz",
+                        defaultValue: "0.0 Hz",
+                        unit: "Hz"
+                    },
+                    {
+                        name: "P107 - Motor Current Limit",
+                        category: "ABB ACS580",
+                        type: "REAL",
+                        description: "Maximum motor current",
+                        range: "0.1 - 1.5 x Motor rated current",
+                        defaultValue: "1.2 x Inom",
+                        unit: "A"
+                    },
+                    {
+                        name: "Parameter 300 - Acceleration Time",
+                        category: "Danfoss VLT",
+                        type: "REAL",
+                        description: "Time to accelerate from 0 to max frequency",
+                        range: "0.05 - 3600s",
+                        defaultValue: "10s",
+                        unit: "sec"
+                    },
+                    {
+                        name: "Parameter 301 - Deceleration Time",
+                        category: "Danfoss VLT",
+                        type: "REAL",
+                        description: "Time to decelerate from max to 0",
+                        range: "0.05 - 3600s",
+                        defaultValue: "10s",
+                        unit: "sec"
+                    },
+                    {
+                        name: "Parameter 221 - Motor Protection",
+                        category: "Schneider ATV",
+                        type: "INT",
+                        description: "Motor thermal protection level",
+                        options: [
+                            { value: "0", description: "No protection" },
+                            { value: "1", description: "Standard motor" },
+                            { value: "2", description: "High inertia load" }
+                        ],
+                        defaultValue: "1"
+                    },
+                    {
+                        name: "P201 - Ramp Up Time",
+                        category: "ABB ACS580",
+                        type: "REAL",
+                        description: "Acceleration time from 0 to max speed",
+                        range: "0.1 - 1800s",
+                        defaultValue: "5s",
+                        unit: "sec"
+                    },
+                    {
+                        name: "P202 - Ramp Down Time", 
+                        category: "ABB ACS580",
+                        type: "REAL",
+                        description: "Deceleration time from max to 0",
+                        range: "0.1 - 1800s",
+                        defaultValue: "5s",
+                        unit: "sec"
+                    },
+                    {
+                        name: "Parameter 500 - Start Mode",
+                        category: "Danfoss VLT",
+                        type: "INT",
+                        description: "Motor start mode selection",
+                        options: [
+                            { value: "0", description: "Auto start" },
+                            { value: "1", description: "Start with ramp" },
+                            { value: "2", description: "Start with DC injection" }
+                        ],
+                        defaultValue: "1"
+                    }
+                ]
+            },
+            instruments: {
+                title: "Instrument Calibration",
+                items: [
+                    {
+                        name: "Pressure Transmitter 4-20mA",
+                        category: "Pressure",
+                        type: "Analog Input",
+                        description: "4-20mA pressure transmitter calibration",
+                        range: "0-100 PSI",
+                        calibration: {
+                            zero: "4.0 mA = 0 PSI",
+                            span: "20.0 mA = 100 PSI"
+                        },
+                        formula: "Value = (Current - 4) / 16 * 100"
+                    },
+                    {
+                        name: "Temperature Sensor PT100",
+                        category: "Temperature",
+                        type: "RTD",
+                        description: "PT100 RTD temperature sensor",
+                        range: "-50 to +200°C",
+                        resistance: "100Ω at 0°C",
+                        alpha: "0.00385 Ω/Ω/°C",
+                        formula: "R = 100 * (1 + 0.00385 * T)"
+                    },
+                    {
+                        name: "pH Electrode Calibration",
+                        category: "Process",
+                        type: "pH Sensor",
+                        description: "Two-point calibration procedure",
+                        buffers: [
+                            { pH: 7.00, description: "Neutral buffer" },
+                            { pH: 4.00, description: "Acid buffer" }
+                        ],
+                        procedure: "Clean electrode → Buffer 7 → Calibrate → Buffer 4 → Save"
+                    },
+                    {
+                        name: "Flow Meter 4-20mA",
+                        category: "Flow",
+                        type: "Analog Input",
+                        description: "Electromagnetic flow meter calibration",
+                        range: "0-1000 L/min",
+                        calibration: {
+                            zero: "4.0 mA = 0 L/min",
+                            span: "20.0 mA = 1000 L/min"
+                        },
+                        formula: "Flow = (Current - 4) / 16 * 1000"
+                    },
+                    {
+                        name: "Level Transmitter 4-20mA",
+                        category: "Level",
+                        type: "Analog Input", 
+                        description: "Ultrasonic level transmitter",
+                        range: "0-500 cm",
+                        calibration: {
+                            zero: "4.0 mA = 0 cm (empty tank)",
+                            span: "20.0 mA = 500 cm (full tank)"
+                        },
+                        formula: "Level = (Current - 4) / 16 * 500"
+                    }
+                ]
+            },
+            alarms: {
+                title: "Alarm Codes Reference",
+                items: [
+                    {
+                        code: "E001",
+                        system: "Siemens S7-300",
+                        description: "Motor overload fault",
+                        cause: "Motor current exceeded thermal limit",
+                        solution: "Check motor load, verify current limits, reset after cooling"
+                    },
+                    {
+                        code: "E002",
+                        system: "Siemens S7-300",
+                        description: "Proximity sensor fault",
+                        cause: "Sensor signal lost or out of range",
+                        solution: "Check sensor wiring, verify power supply, replace if faulty"
+                    },
+                    {
+                        code: "F001",
+                        system: "ABB VFD",
+                        description: "Overcurrent",
+                        cause: "Motor current exceeds 200% of rated current",
+                        solution: "Check for mechanical jams, verify motor parameters"
+                    },
+                    {
+                        code: "F002",
+                        system: "ABB VFD",
+                        description: "DC bus overvoltage",
+                        cause: "Supply voltage too high or regenerative load",
+                        solution: "Check supply voltage, add braking resistor if needed"
+                    },
+                    {
+                        code: "ALM-01",
+                        system: "Danfoss VLT",
+                        description: "Alarm 1 - Overcurrent",
+                        cause: "Excessive motor current",
+                        solution: "Reduce load, check acceleration time, verify motor data"
+                    },
+                    {
+                        code: "ALM-02",
+                        system: "Danfoss VLT",
+                        description: "Alarm 2 - Undervoltage",
+                        cause: "DC bus voltage below minimum",
+                        solution: "Check supply voltage, verify power connections"
+                    },
+                    {
+                        code: "SC01",
+                        system: "Schneider ATV",
+                        description: "Short circuit detection",
+                        cause: "Output short circuit or ground fault",
+                        solution: "Check motor cables, verify motor winding resistance"
+                    },
+                    {
+                        code: "SC02",
+                        system: "Schneider ATV",
+                        description: "Ground fault",
+                        cause: "Ground fault on output",
+                        solution: "Check motor and cable insulation"
+                    },
+                    {
+                        code: "E003",
+                        system: "Siemens S7-300",
+                        description: "Communication error",
+                        cause: "Profibus/Profinet communication timeout",
+                        solution: "Check cable connections, verify network configuration"
+                    },
+                    {
+                        code: "F003",
+                        system: "ABB VFD",
+                        description: "Input phase loss",
+                        cause: "Missing or unbalanced input phases",
+                        solution: "Check supply voltage, verify all phases present"
+                    }
+                ]
+            }
+        };
+
+        // Global variables
+        let currentView = 'categories';
+        let currentFilter = 'all';
+
+        // Initialize when page loads
+        window.addEventListener('load', function() {
+            // Initialize Lucide icons
+            if (typeof lucide !== 'undefined') {
+                lucide.createIcons();
+            }
+            
+            // Initialize search functionality
+            setupSearch();
+            
+            // Setup mobile touch handlers
+            setupMobileHandlers();
+        });
+
+        // Mobile touch event handlers
+        function setupMobileHandlers() {
+            // Add touch event listeners for better mobile responsiveness
+            document.querySelectorAll('.filter-btn').forEach(button => {
+                // Prevent double-tap zoom on buttons
+                button.addEventListener('touchend', function(e) {
+                    e.preventDefault();
+                    const filter = this.getAttribute('onclick').match(/'([^']+)'/)[1];
+                    addButtonFeedback(this);
+                    setFilter(filter);
+                });
+                
+                // Add visual feedback on touch
+                button.addEventListener('touchstart', function() {
+                    addButtonFeedback(this);
+                });
+            });
+            
+            // Also setup category cards with touch handlers
+            document.querySelectorAll('.category-card').forEach(card => {
+                card.addEventListener('touchend', function(e) {
+                    e.preventDefault();
+                    const onclickAttr = this.getAttribute('onclick');
+                    if (onclickAttr) {
+                        const category = onclickAttr.match(/'([^']+)'/)[1];
+                        addButtonFeedback(card);
+                        showCategory(category);
+                    }
+                });
+            });
+        }
+
+        // Search functionality
+        function setupSearch() {
+            const searchInput = document.getElementById('searchInput');
+            searchInput.addEventListener('input', (e) => {
+                const query = e.target.value.toLowerCase();
+                if (query.length >= 2) {
+                    showSearchResults(query);
+                } else if (query.length === 0) {
+                    showCategories();
+                }
+            });
+        }
+
+        function setupFilterButtons() {
+            console.log('Setting up filter buttons...');
+            
+            // Add event listeners to all filter buttons
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            console.log('Found', filterButtons.length, 'filter buttons');
+            
+            filterButtons.forEach((button, index) => {
+                console.log(`Setting up button ${index}:`, button.textContent);
+                
+                // Add click event listener
+                button.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const filter = button.getAttribute('data-filter') || button.textContent.toLowerCase();
+                    console.log('Button clicked:', filter);
+                    setFilter(filter);
+                });
+                
+                // Add touch event listener for mobile
+                button.addEventListener('touchstart', (e) => {
+                    e.preventDefault();
+                    const filter = button.getAttribute('data-filter') || button.textContent.toLowerCase();
+                    console.log('Button touched:', filter);
+                    setFilter(filter);
+                });
+                
+                // Add visual feedback
+                button.addEventListener('touchstart', () => {
+                    button.style.transform = 'scale(0.95)';
+                });
+                
+                button.addEventListener('touchend', () => {
+                    setTimeout(() => {
+                        button.style.transform = '';
+                    }, 150);
+                });
+            });
+        }
+
+        // Main navigation functions
+        function showCategories() {
+            currentView = 'categories';
+            document.getElementById('categoriesView').classList.remove('hidden');
+            document.getElementById('contentView').classList.add('hidden');
+        }
+
+        function showCategory(category) {
+            // Validate category exists
+            if (!database[category]) {
+                showToast('Category not found: ' + category, 'error');
+                return;
+            }
+            
+            // Switch views
+            currentView = 'category';
+            document.getElementById('categoriesView').classList.add('hidden');
+            document.getElementById('contentView').classList.remove('hidden');
+            document.getElementById('contentTitle').textContent = database[category].title;
+            
+            // Render content
+            renderContent(category);
+        }
+
+        function showAlarms() {
+            showCategory('alarms');
+        }
+
+        function showSearchResults(query) {
+            const results = [];
+            
+            // Search through all categories
+            Object.keys(database).forEach(categoryKey => {
+                const category = database[categoryKey];
+                category.items.forEach(item => {
+                    const searchableText = JSON.stringify(item).toLowerCase();
+                    if (searchableText.includes(query)) {
+                        results.push({ ...item, category: categoryKey });
+                    }
+                });
+            });
+
+            currentView = 'search';
+            document.getElementById('categoriesView').classList.add('hidden');
+            document.getElementById('contentView').classList.remove('hidden');
+            document.getElementById('contentTitle').textContent = `Search Results for "${query}"`;
+            
+            renderSearchResults(results);
+        }
+
+        function renderSearchResults(results) {
+            const contentArea = document.getElementById('contentArea');
+            contentArea.innerHTML = '';
+
+            if (results.length === 0) {
+                contentArea.innerHTML = '<p style="text-align: center; color: var(--neutral-400);">No results found</p>';
+                return;
+            }
+
+            results.forEach(item => {
+                const card = createCard({ ...item, categoryKey: item.category });
+                contentArea.appendChild(card);
+            });
+
+            // Re-initialize icons
+            if (typeof lucide !== 'undefined') {
+                lucide.createIcons();
+            }
+        }
+
+        function renderContent(category) {
+            const items = database[category].items;
+            const contentArea = document.getElementById('contentArea');
+            contentArea.innerHTML = '';
+
+            if (items.length === 0) {
+                contentArea.innerHTML = '<p style="text-align: center; color: var(--neutral-400);">No items found</p>';
+                return;
+            }
+
+            items.forEach(item => {
+                const card = createCard({ ...item, categoryKey: category });
+                contentArea.appendChild(card);
+            });
+
+            // Re-initialize icons
+            if (typeof lucide !== 'undefined') {
+                lucide.createIcons();
+            }
+        }
+
+        function createCard(item) {
+            const card = document.createElement('div');
+            card.className = 'card';
+            
+            let tagClass = '';
+            if (item.category || item.categoryKey) {
+                const categoryName = (item.category || item.categoryKey || '').toLowerCase();
+                if (categoryName.includes('siemens') || categoryName.includes('tia') || categoryName.includes('s7')) {
+                    tagClass = 'siemens';
+                } else if (categoryName.includes('schneider') || categoryName.includes('machine')) {
+                    tagClass = 'schneider';
+                } else if (categoryName.includes('abb')) {
+                    tagClass = 'abb';
+                } else if (categoryName.includes('danfoss')) {
+                    tagClass = 'danfoss';
+                }
+            }
+
+            card.innerHTML = `
+                <div class="card-header">
+                    <div class="card-title">
+                        <h3>${item.name || item.code}</h3>
+                    </div>
+                    <span class="tag ${tagClass}">${item.category || item.system || item.categoryKey}</span>
+                </div>
+                <p class="body" style="margin-bottom: var(--space-sm);">${item.description}</p>
+                ${createDetails(item)}
+                ${item.sampleCode ? createCodeBlock(item.sampleCode, item.name) : ''}
+            `;
+
+            return card;
+        }
+
+        function createDetails(item) {
+            let details = '';
+
+            if (item.address) {
+                details += `
+                    <div class="data-pair">
+                        <span class="data-key">Address:</span>
+                        <span class="data-value">${item.address}</span>
+                    </div>
+                `;
+            }
+
+            if (item.dataType || item.type) {
+                details += `
+                    <div class="data-pair">
+                        <span class="data-key">Type:</span>
+                        <span class="data-value">${item.dataType || item.type}</span>
+                    </div>
+                `;
+            }
+
+            if (item.defaultValue) {
+                details += `
+                    <div class="data-pair">
+                        <span class="data-key">Default:</span>
+                        <span class="data-value">${item.defaultValue}</span>
+                    </div>
+                `;
+            }
+
+            if (item.range) {
+                details += `
+                    <div class="data-pair">
+                        <span class="data-key">Range:</span>
+                        <span class="data-value">${item.range}</span>
+                    </div>
+                `;
+            }
+
+            if (item.unit) {
+                details += `
+                    <div class="data-pair">
+                        <span class="data-key">Unit:</span>
+                        <span class="data-value">${item.unit}</span>
+                    </div>
+                `;
+            }
+
+            // Parameters for function blocks
+            if (item.parameters) {
+                details += `
+                    <div class="data-pair">
+                        <span class="data-key">Parameters:</span>
+                        <span class="data-value">${item.parameters.join(', ')}</span>
+                    </div>
+                `;
+            }
+
+            // Variables for FBs
+            if (item.variables) {
+                details += `<div style="margin-top: var(--space-sm);"><strong>Variables:</strong></div>`;
+                item.variables.forEach(variable => {
+                    details += `
+                        <div class="data-pair" style="margin-left: var(--space-sm);">
+                            <span class="data-key">${variable.name} (${variable.type}):</span>
+                            <span class="data-value">${variable.description}</span>
+                        </div>
+                    `;
+                });
+            }
+
+            // Options for parameters
+            if (item.options) {
+                details += `<div style="margin-top: var(--space-sm);"><strong>Options:</strong></div>`;
+                item.options.forEach(option => {
+                    details += `
+                        <div class="data-pair" style="margin-left: var(--space-sm);">
+                            <span class="data-key">${option.value}:</span>
+                            <span class="data-value">${option.description}</span>
+                        </div>
+                    `;
+                });
+            }
+
+            // Calibration info
+            if (item.calibration) {
+                details += `<div style="margin-top: var(--space-sm);"><strong>Calibration:</strong></div>`;
+                Object.keys(item.calibration).forEach(key => {
+                    details += `
+                        <div class="data-pair" style="margin-left: var(--space-sm);">
+                            <span class="data-key">${key.charAt(0).toUpperCase() + key.slice(1)}:</span>
+                            <span class="data-value">${item.calibration[key]}</span>
+                        </div>
+                    `;
+                });
+            }
+
+            // Formula
+            if (item.formula) {
+                details += `
+                    <div class="data-pair">
+                        <span class="data-key">Formula:</span>
+                        <span class="data-value">${item.formula}</span>
+                    </div>
+                `;
+            }
+
+            // Alarm-specific fields
+            if (item.cause) {
+                details += `
+                    <div class="data-pair">
+                        <span class="data-key">Cause:</span>
+                        <span class="data-value">${item.cause}</span>
+                    </div>
+                `;
+            }
+
+            if (item.solution) {
+                details += `
+                    <div class="data-pair">
+                        <span class="data-key">Solution:</span>
+                        <span class="data-value">${item.solution}</span>
+                    </div>
+                `;
+            }
+
+            return details;
+        }
+
+        function createCodeBlock(code, name) {
+            return `
+                <div class="code-block">
+                    <button class="copy-button" onclick="copyCode(this, '${name}')">
+                        <i data-lucide="copy"></i>
+                    </button>
+                    <pre>${code}</pre>
+                </div>
+            `;
+        }
+
+        function copyCode(button, name) {
+            const codeBlock = button.nextElementSibling;
+            const code = codeBlock.textContent;
+            
+            if (navigator.clipboard) {
+                navigator.clipboard.writeText(code).then(() => {
+                    button.classList.add('copied');
+                    button.innerHTML = '<i data-lucide="check"></i>';
+                    
+                    setTimeout(() => {
+                        button.classList.remove('copied');
+                        button.innerHTML = '<i data-lucide="copy"></i>';
+                        if (typeof lucide !== 'undefined') {
+                            lucide.createIcons();
+                        }
+                    }, 2000);
+                });
+            } else {
+                // Fallback for older browsers
+                const textArea = document.createElement('textarea');
+                textArea.value = code;
+                document.body.appendChild(textArea);
+                textArea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textArea);
+                
+                button.classList.add('copied');
+                button.innerHTML = '<i data-lucide="check"></i>';
+                
+                setTimeout(() => {
+                    button.classList.remove('copied');
+                    button.innerHTML = '<i data-lucide="copy"></i>';
+                    if (typeof lucide !== 'undefined') {
+                        lucide.createIcons();
+                    }
+                }, 2000);
+            }
+        }
+
+        function setFilter(filter) {
+            console.log('setFilter called with:', filter);
+            
+            try {
+                // Remove active class from all filter buttons
+                const allButtons = document.querySelectorAll('.filter-btn');
+                allButtons.forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                
+                // Add active class to clicked button
+                const activeButton = document.querySelector(`[data-filter="${filter}"]`);
+                if (activeButton) {
+                    activeButton.classList.add('active');
+                    console.log('Active button set for:', filter);
+                    
+                    // Scroll active button into view if it's off-screen
+                    setTimeout(() => {
+                        activeButton.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'nearest',
+                            inline: 'center'
+                        });
+                    }, 100);
+                } else {
+                    console.error('Button not found for filter:', filter);
+                }
+                
+                currentFilter = filter;
+                
+                // Apply filter to current view
+                if (currentView === 'category') {
+                    const currentTitle = document.getElementById('contentTitle').textContent.toLowerCase();
+                    let category = 'siemens';
+                    
+                    if (currentTitle.includes('schneider')) category = 'schneider';
+                    else if (currentTitle.includes('vfd')) category = 'vfd';
+                    else if (currentTitle.includes('instrument')) category = 'instruments';
+                    else if (currentTitle.includes('alarm')) category = 'alarms';
+                    
+                    renderContent(category);
+                }
+            } catch (error) {
+                console.error('Error in setFilter:', error);
+            }
+        }
+
+        function showToast(message, type = 'success') {
+            // Remove existing toast
+            const existingToast = document.querySelector('.toast');
+            if (existingToast) {
+                existingToast.remove();
+            }
+            
+            // Create new toast
+            const toast = document.createElement('div');
+            toast.className = 'toast';
+            toast.textContent = message;
+            
+            // Set color based on type
+            if (type === 'error') {
+                toast.style.background = 'var(--error-500)';
+            } else {
+                toast.style.background = 'var(--success-500)';
+            }
+            
+            document.body.appendChild(toast);
+            
+            // Remove after 3 seconds
+            setTimeout(() => {
+                if (toast.parentNode) {
+                    toast.remove();
+                }
+            }, 3000);
+        }
+
+        // Visual feedback for button presses
+        function addButtonFeedback(element) {
+            element.style.transform = 'scale(0.95)';
+            element.style.transition = 'transform 0.1s ease';
+            
+            setTimeout(() => {
+                element.style.transform = '';
+            }, 150);
+        }
+
+
+
+        // Initialize search when DOM is ready
+        document.addEventListener('DOMContentLoaded', () => {
+            setupSearch();
+            setupFilterButtons();
+            console.log('All initialization complete');
+        });
+
+        // Register Service Worker for PWA
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./sw.js')
+                    .then((registration) => {
+                        console.log('SW registered: ', registration);
+                        
+                        // Check for updates
+                        registration.addEventListener('updatefound', () => {
+                            const newWorker = registration.installing;
+                            newWorker.addEventListener('statechange', () => {
+                                if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                                    // New version available
+                                    showToast('App updated! Refresh to use the latest version.', 'success');
+                                }
+                            });
+                        });
+                    })
+                    .catch((registrationError) => {
+                        console.log('SW registration failed: ', registrationError);
+                    });
+            });
+        }
+
+        // Handle PWA install prompt
+        let deferredPrompt;
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            showToast('Install this app for offline access!', 'success');
+        });
+
+        // Handle app installation
+        window.addEventListener('appinstalled', (evt) => {
+            console.log('App installed successfully');
+            showToast('App installed! You can now use it offline.', 'success');
+        });
+
+        // Handle URL parameters for direct category access
+        function handleURLParameters() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const category = urlParams.get('category');
+            if (category && database[category]) {
+                setTimeout(() => {
+                    showCategory(category);
+                }, 100);
+            }
+        }
+        
+        // Initialize URL parameter handling
+        window.addEventListener('load', handleURLParameters);
+    </script>
+</body>
+</html>
